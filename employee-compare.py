@@ -3,14 +3,17 @@ import csv
 
 # Define the Employee class
 class Employee:
-	def __init__(self, employeeNumber, department, group, team):
+	def __init__(self, employeeNumber, department, group, team, employeeName, supervisor, costCenter):
 		self.employeeNumber = employeeNumber
 		self.department = department
 		self.group = group
 		self.team = team
+		self.employeeName = employeeName
+		self.supervisor = supervisor
+		self.costCenter = costCenter
 
 	def __eq__(self, other):
-		return self.employeeNumber == other.employeeNumber and self.department == other.department and self.group == other.group and self.team == other.team
+		return self.employeeNumber == other.employeeNumber and self.department == other.department and self.group == other.group and self.team == other.team and self.employeeName == other.employeeName and self.supervisor == other.supervisor and self.costCenter == other.costCenter
 
 # Define the EmployeeUpdate class
 class EmployeeUpdate:
@@ -27,7 +30,7 @@ def load_employee_list(fileName):
 		line_count = 0
 	
 		for row in csv_reader:
-			employee = Employee(row["Employee Number"], row["Department"], row["Group"], row["Team"])
+			employee = Employee(row["Employee Number"], row["Department"], row["Group"], row["Team"], row["Employee Name"], row["Supervisor"], row["Cost Center"])
 			employeeList.append(employee)
 			
 			line_count += 1
@@ -92,6 +95,15 @@ for employee in newEmployeeList:
 				
 				if employee.team != oldVersionOfEmployee.team:
 					updates.append("Team: " + oldVersionOfEmployee.team + " → " + employee.team)
+					
+				if employee.employeeName != oldVersionOfEmployee.employeeName:
+					updates.append("Employee Name: " + oldVersionOfEmployee.employeeName + " → " + employee.employeeName)
+				
+				if employee.supervisor != oldVersionOfEmployee.supervisor:
+					updates.append("Supervisor: " + oldVersionOfEmployee.supervisor + " → " + employee.supervisor)
+					
+				if employee.costCenter != oldVersionOfEmployee.costCenter:
+					updates.append("Cost Center: " + oldVersionOfEmployee.costCenter + " → " + employee.costCenter)	
 			
 			employeeUpdate = EmployeeUpdate(employee, updates)	
 			employeeUpdates.append(employeeUpdate)
