@@ -112,19 +112,19 @@ for employee in newEmployeeList:
 # Output the results
 print("The following employees were removed:")
 for employee in removedEmployees:
-	print(employee.employeeNumber + " (Employee Number: " + employee.employeeNumber + ")")
+	print(employee.employeeName + " (Employee Number: " + employee.employeeNumber + ")")
 
 print("")
 
 print("The following employees were added:")
 for employee in addedEmployees:
-	print(employee.employeeNumber + " (Employee Number: " + employee.employeeNumber + ")")
+	print(employee.employeeName + " (Employee Number: " + employee.employeeNumber + ")")
 	
 print("")
 
 print("The following employees were updated:")
 for employeeUpdate in employeeUpdates:
-	print(employeeUpdate.employee.employeeNumber + " (Employee Number: " + employeeUpdate.employee.employeeNumber + ")")
+	print(employeeUpdate.employee.employeeName + " (Employee Number: " + employeeUpdate.employee.employeeNumber + ")")
 	
 	for update in employeeUpdate.updates:
 		print("\t" + update)
