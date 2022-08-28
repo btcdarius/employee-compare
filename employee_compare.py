@@ -23,6 +23,10 @@ class EmployeeUpdate:
 		self.employee = employee
 		self.updates = updates
 
+
+def test_test():
+	return "Hi"
+
 # Function for loading employees from a CSV and return as a list of Employee objects
 def load_employee_list(fileName):
 	employeeList = []
@@ -60,7 +64,7 @@ def main():
 	addedEmployees = []
 	removedEmployees = []
 	employeeUpdates = []
-	
+	output = ""
 	
 	# Exit with error if two arguments are not supplied
 	if len(sys.argv) != 3:
@@ -106,25 +110,26 @@ def main():
 	
 	
 	# Output the results
-	print("The following employees were removed:")
+	output += "The following employees were removed:\n"
 	for employee in removedEmployees:
-		print(employee.employeeName + " (Employee Number: " + employee.employeeID + ")")
+		output += employee.employeeName + " (Employee Number: " + employee.employeeID + ")\n"
 	
-	print("")
+	output += "\n"
 	
-	print("The following employees were added:")
+	output += "The following employees were added:\n"
 	for employee in addedEmployees:
-		print(employee.employeeName + " (Employee Number: " + employee.employeeID + ")")
+		output += employee.employeeName + " (Employee Number: " + employee.employeeID + ")\n"
 		
-	print("")
+	output += "\n"
 	
-	print("The following employees were updated:")
+	output += "The following employees were updated:\n"
 	for employeeUpdate in employeeUpdates:
-		print(employeeUpdate.employee.employeeName + " (Employee Number: " + employeeUpdate.employee.employeeID + ")")
+		output += employeeUpdate.employee.employeeName + " (Employee Number: " + employeeUpdate.employee.employeeID + ")\n"
 		
 		for update in employeeUpdate.updates:
-			print("\t" + update)
-	
+			output += "\t" + update + "\n"
+			
+	return output
 	
 if __name__ == '__main__':
-		main()
+		print(main())
