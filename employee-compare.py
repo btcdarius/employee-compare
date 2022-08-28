@@ -53,7 +53,7 @@ def get_employee_numbers(employeeList):
 	return employeeIDs
 
 
-## EXECUTION
+# Execution
 def main():
 
 	# Create variables for output
