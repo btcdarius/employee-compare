@@ -38,21 +38,24 @@ class EmployeeUpdate:
 def load_employee_list(fileName):
 	employeeList = []
 	
-	with open(fileName, mode='r') as csv_file:
-		csv_reader = csv.DictReader(csv_file)
-		line_count = 0
-	
-		for row in csv_reader:
-			employeeInfo = {}
-			for field in otherFields:
-				employeeInfo[field] = row[field]
-			
-			employee = Employee(row[idField], row[nameField], employeeInfo)
-			employeeList.append(employee)
-			
-			line_count += 1
-			
-	return employeeList
+	try:
+		with open(fileName, mode='r') as csv_file:
+			csv_reader = csv.DictReader(csv_file)
+			line_count = 0
+		
+			for row in csv_reader:
+				employeeInfo = {}
+				for field in otherFields:
+					employeeInfo[field] = row[field]
+				
+				employee = Employee(row[idField], row[nameField], employeeInfo)
+				employeeList.append(employee)
+				
+				line_count += 1
+				
+		return employeeList
+	except:
+		exit_with_error("There was a problem loading this file:\n" + fileName)
 
 # Function for getting a list of Employee Numbers from a list of Employee objects
 def get_employee_numbers(employeeList):
@@ -63,8 +66,7 @@ def get_employee_numbers(employeeList):
 
 	return employeeIDs
 
-
-# Prepare output
+# Function for preparing output
 def main(oldFile, newFile):
 
 	# Create variables for output
@@ -72,11 +74,6 @@ def main(oldFile, newFile):
 	removedEmployees = []
 	employeeUpdates = []
 	output = ""
-	
-	# Exit with error if two arguments are not supplied
-	if len(sys.argv) != 3:
-		print("Error: Two files must be supplied.")
-		sys.exit()
 		
 	# Load old and new employee lists into objects
 	oldEmployeeList = load_employee_list(oldFile)
@@ -111,7 +108,6 @@ def main(oldFile, newFile):
 				employeeUpdate = EmployeeUpdate(employee, updates)	
 				employeeUpdates.append(employeeUpdate)
 	
-	
 	# Output the results
 	output += "The following employees were removed:\n"
 	for employee in removedEmployees:
@@ -133,10 +129,20 @@ def main(oldFile, newFile):
 			output += "\t" + update + "\n"
 			
 	return output
-
+	
+# Function for showing errors and quitting
+def exit_with_error(errorText):
+	print("Error: " + errorText)
+	sys.exit()
 
 # ---------------------------------------------------------------------------
 # Execution
 # ---------------------------------------------------------------------------
 if __name__ == '__main__':
-		print(main(sys.argv[1], sys.argv[2]))
+	try:
+		oldFile = sys.argv[1]
+		newFile = sys.argv[2]
+	except:
+		exit_with_error("Incorrect number of parameters passed. There should be two: the path to the old file and the path to the new file.")
+	
+	print(main(oldFile, newFile))
