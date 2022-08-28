@@ -1,13 +1,18 @@
 import sys
 import csv
 
+
+# ---------------------------------------------------------------------------
 # Configuration
+# ---------------------------------------------------------------------------
 idField = "Employee Number"
 nameField = "Employee Name"
 otherFields = ["Department", "Group", "Team", "Supervisor", "Cost Center"]
 
 
-# Define the Employee class
+# ---------------------------------------------------------------------------
+# Class definitions
+# ---------------------------------------------------------------------------
 class Employee:
 	def __init__(self, employeeID, employeeName, employeeInfo):
 		self.employeeID = employeeID
@@ -17,15 +22,15 @@ class Employee:
 	def __eq__(self, other):
 		return self.employeeID == other.employeeID and self.employeeName == other.employeeName and self.employeeInfo == other.employeeInfo
 
-# Define the EmployeeUpdate class
 class EmployeeUpdate:
 	def __init__(self, employee, updates):
 		self.employee = employee
 		self.updates = updates
 
 
-def test_test():
-	return "Hi"
+# ---------------------------------------------------------------------------
+# Functions
+# ---------------------------------------------------------------------------
 
 # Function for loading employees from a CSV and return as a list of Employee objects
 def load_employee_list(fileName):
@@ -57,7 +62,7 @@ def get_employee_numbers(employeeList):
 	return employeeIDs
 
 
-# Execution
+# Prepare output
 def main():
 
 	# Create variables for output
@@ -130,6 +135,10 @@ def main():
 			output += "\t" + update + "\n"
 			
 	return output
-	
+
+
+# ---------------------------------------------------------------------------
+# Execution
+# ---------------------------------------------------------------------------
 if __name__ == '__main__':
 		print(main())
