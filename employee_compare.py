@@ -5,6 +5,7 @@ import csv
 # ---------------------------------------------------------------------------
 # Configuration
 # ---------------------------------------------------------------------------
+
 idField = "Employee Number"
 nameField = "Employee Name"
 otherFields = ["Department", "Group", "Team", "Supervisor", "Cost Center"]
@@ -13,6 +14,7 @@ otherFields = ["Department", "Group", "Team", "Supervisor", "Cost Center"]
 # ---------------------------------------------------------------------------
 # Class definitions
 # ---------------------------------------------------------------------------
+
 class Employee:
 	def __init__(self, employeeID, employeeName, employeeInfo):
 		self.employeeID = employeeID
@@ -63,7 +65,7 @@ def get_employee_numbers(employeeList):
 
 
 # Prepare output
-def main():
+def main(oldFile, newFile):
 
 	# Create variables for output
 	addedEmployees = []
@@ -75,11 +77,7 @@ def main():
 	if len(sys.argv) != 3:
 		print("Error: Two files must be supplied.")
 		sys.exit()
-	
-	# Get the old and new file paths from the arguments passed
-	oldFile = sys.argv[1]
-	newFile = sys.argv[2]
-	
+		
 	# Load old and new employee lists into objects
 	oldEmployeeList = load_employee_list(oldFile)
 	newEmployeeList = load_employee_list(newFile)
@@ -141,4 +139,4 @@ def main():
 # Execution
 # ---------------------------------------------------------------------------
 if __name__ == '__main__':
-		print(main())
+		print(main(sys.argv[1], sys.argv[2]))
