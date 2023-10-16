@@ -8,7 +8,7 @@ import csv
 
 idField = "Employee Number"
 nameField = "Employee Name"
-otherFields = ["Department", "Group", "Team", "Supervisor", "Cost Center"]
+otherFields = ["Department", "Group", "Team", "Supervisor", "Cost Center", "Subgroup", "Discipline"]
 
 
 # ---------------------------------------------------------------------------
