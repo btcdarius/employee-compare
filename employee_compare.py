@@ -2,7 +2,7 @@ import sys
 import csv
 
 # Configuration
-idField = "ID"
+idField = "Employee ID"
 nameField = "Preferred Name"
 otherFields = ["Department", "Group", "Team", "CF LO Supervisory Level 4", "Cost Center - Name", "Subgroup", "Discipline"]
 
